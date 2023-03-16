@@ -12,7 +12,6 @@
         },
         "files": [
             "./Library/OpenSearchV3/OpenSearch/Autoloader/Autoloader.php",
-            "./Library/BaiduAipLib/AipNlp.php",
             "./Library/OpenSearch/CloudsearchClient.php",
             "./Library/OpenSearch/CloudsearchDoc.php",
             "./Library/OpenSearch/CloudsearchIndex.php",

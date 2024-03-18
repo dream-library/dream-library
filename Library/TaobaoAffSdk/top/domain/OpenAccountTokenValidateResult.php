@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 验证token返回数据结构
+ * 验证成功返回token中的信息
  * @author auto create
  */
 class OpenAccountTokenValidateResult

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Open Account申请token的结果
+ * 返回的token结果
  * @author auto create
  */
 class OpenAccountTokenApplyResult

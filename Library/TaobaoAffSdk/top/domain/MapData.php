@@ -1,55 +1,55 @@
 <?php
 
 /**
- * data
+ * resultList
  * @author auto create
  */
 class MapData
 {
 	
 	/** 
-	 * 券ID
+	 * 选品库信息
 	 **/
-	public $coupon_activity_id;
+	public $favorites_info;
 	
 	/** 
-	 * 优惠券金额
+	 * 商品基础信息
 	 **/
-	public $coupon_amount;
+	public $item_basic_info;
 	
 	/** 
-	 * 优惠券结束时间
+	 * 商品信息-淘宝客新商品id；使用说明参考《淘宝客新商品ID升级》白皮书：https://www.yuque.com/taobaolianmengguanfangxiaoer/zmig94/tfyt0pahmlpzu2ud
 	 **/
-	public $coupon_end_time;
+	public $item_id;
 	
 	/** 
-	 * 优惠券剩余量
+	 * 预售信息
 	 **/
-	public $coupon_remain_count;
+	public $presale_info;
 	
 	/** 
-	 * 券类型，1 表示全网公开券，4 表示妈妈渠道券
+	 * 价格促销信息
 	 **/
-	public $coupon_src_scene;
+	public $price_promotion_info;
 	
 	/** 
-	 * 优惠券门槛金额
+	 * 淘客推广信息
 	 **/
-	public $coupon_start_fee;
+	public $publish_info;
 	
 	/** 
-	 * 优惠券开始时间
+	 * 商品库范围信息
 	 **/
-	public $coupon_start_time;
+	public $scope_info;
 	
 	/** 
-	 * 优惠券总量
+	 * 天猫榜单信息
 	 **/
-	public $coupon_total_count;
+	public $tmall_rank_info;
 	
 	/** 
-	 * 券属性，0表示店铺券，1表示单品券
+	 * 前N件佣金信息-前N件佣金生效或预热时透出以下字段
 	 **/
-	public $coupon_type;	
+	public $topn_info;	
 }
 ?>

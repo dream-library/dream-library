@@ -3,7 +3,7 @@
  * TOP API: taobao.areas.get request
  * 
  * @author auto create
- * @since 1.0, 2018.07.26
+ * @since 1.0, 2022.05.25
  */
 class AreasGetRequest
 {

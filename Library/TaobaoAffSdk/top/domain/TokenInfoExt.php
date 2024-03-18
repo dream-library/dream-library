@@ -1,14 +1,14 @@
 <?php
 
 /**
- * token info中的扩展字段
+ * token info扩展信息
  * @author auto create
  */
 class TokenInfoExt
 {
 	
 	/** 
-	 * 授权登录后返回的信息
+	 * oauthOtherInfo
 	 **/
 	public $oauth_other_info;
 	

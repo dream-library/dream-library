@@ -23,16 +23,6 @@ class PropValue
 	public $is_parent;
 	
 	/** 
-	 * 修改时间（类目增量专用）
-	 **/
-	public $modified_time;
-	
-	/** 
-	 * 三种枚举类型：modify，add，delete (增量类目专用)
-	 **/
-	public $modified_type;
-	
-	/** 
 	 * 属性值
 	 **/
 	public $name;

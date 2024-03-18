@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 确认收货费用结构
+ * 获取到的交易确认收货费用
  * @author auto create
  */
 class TradeConfirmFee

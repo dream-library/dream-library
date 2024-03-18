@@ -1,7 +1,8 @@
 <?php
 
 /**
- * 产品属性图片
+ * 产品的属性图片.比如说黄色对应的产品图片,绿色对应的产品图片。fields中设置为product_prop_imgs.id、 
+product_prop_imgs.props、product_prop_imgs.url、product_prop_imgs.position等形式就会返回相应的字段
  * @author auto create
  */
 class ProductPropImg

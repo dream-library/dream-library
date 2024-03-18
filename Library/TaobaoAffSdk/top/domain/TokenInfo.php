@@ -1,7 +1,7 @@
 <?php
 
 /**
- * token信息
+ * token中的数据
  * @author auto create
  */
 class TokenInfo

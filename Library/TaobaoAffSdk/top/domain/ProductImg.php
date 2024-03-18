@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 产品图片
+ * 返回产品图片结构中的：url,id,created,modified
  * @author auto create
  */
 class ProductImg

@@ -3,7 +3,7 @@
  * TOP API: taobao.product.get request
  * 
  * @author auto create
- * @since 1.0, 2020.07.21
+ * @since 1.0, 2022.09.08
  */
 class ProductGetRequest
 {

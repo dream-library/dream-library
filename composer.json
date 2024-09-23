@@ -17,7 +17,7 @@
             "./Library/OpenSearch/CloudsearchIndex.php",
             "./Library/OpenSearch/CloudsearchSearch.php",
             "./Library/OpenSearch/CloudsearchSuggest.php",
-            "./Library/JdSdk/Jdloader.php",
+            "./Library/JdSdk/JdSdk.php",
             "./Library/TaobaoAffSdk/TopSdk.php"
         ]
     },

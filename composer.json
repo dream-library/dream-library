@@ -5,7 +5,6 @@
     "require": {
         "php": "^7.3||^8.0"
     },
-    "version": "0.0.6",
     "autoload": {
         "psr-4": {
             "HyperDown\\": "Library\\HyperDown",

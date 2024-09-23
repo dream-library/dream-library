@@ -29,17 +29,24 @@ if (!defined("JD_SDK_DEV_MODE"))
  * 定义常量结束
  */
 
+if (!defined("JD_AUTOLOADER_PATH"))
+{
+    define("JD_AUTOLOADER_PATH", dirname(__FILE__));
+}
+
+require("Jdloader.php");
+
 /**
  * 找到lotusphp入口文件，并初始化lotusphp
  * lotusphp是一个第三方php框架，其主页在：lotusphp.googlecode.com
  */
-$lotusHome = dirname(__FILE__) . DIRECTORY_SEPARATOR . "lotusphp_runtime" . DIRECTORY_SEPARATOR;
-include($lotusHome . "Lotus.php");
-$lotus = new Lotus;
-$lotus->option["autoload_dir"] = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'jd';
-$lotus->devMode = JD_SDK_DEV_MODE;
-$lotus->defaultStoreDir = JD_SDK_WORK_DIR;
-$lotus->init();
+//$lotusHome = dirname(__FILE__) . DIRECTORY_SEPARATOR . "lotusphp_runtime" . DIRECTORY_SEPARATOR;
+//include($lotusHome . "Lotus.php");
+//$lotus = new Lotus;
+//$lotus->option["autoload_dir"] = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'jd';
+//$lotus->devMode = JD_SDK_DEV_MODE;
+//$lotus->defaultStoreDir = JD_SDK_WORK_DIR;
+//$lotus->init();
 
 //测试demo
 //$c = new JdClient();

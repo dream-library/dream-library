@@ -10,17 +10,17 @@ class PopOrderEncryptMobileNumRequest
 	}
 	
 	public function getApiParas(){
-	    if(empty($this->apiParas)){
-            return "{}";
-        }
-        return json_encode($this->apiParas);
+        if(empty($this->apiParas)){
+	        return "{}";
+	    }
+		return $this->apiParas;
 	}
 	
 	public function check(){
 		
 	}
 	
-	public function putOtherTextParam($key, $value){
+    public function putOtherTextParam($key, $value){
 		$this->apiParas[$key] = $value;
 		$this->$key = $value;
 	}
@@ -34,23 +34,14 @@ class PopOrderEncryptMobileNumRequest
     public function getVersion(){
         return $this->version;
     }
-                                    	                        	                        	                        	                   			private $mobile;
-    	                        
-	public function setMobile($mobile){
-		$this->mobile = $mobile;
-         $this->apiParas["mobile"] = $mobile;
-	}
+    private  $mobile;
 
-	public function getMobile(){
-	  return $this->mobile;
-	}
-
+    public function setMobile($mobile){
+        $this->apiParas['mobile'] = $mobile;
+    }
+    public function getMobile(){
+        return $this->apiParas['mobile'];
+    }
 }
 
-
-
-
-
-        
- 
-
+?>

@@ -387,6 +387,136 @@ class GoodsReqDTO{
     public function getArea(){
         return $this->area;
     }
+            
+    private $isOversea;
+    
+    public function setIsOversea($isOversea){
+        $this->params['isOversea'] = $isOversea;
+    }
+
+    public function getIsOversea(){
+        return $this->isOversea;
+    }
+            
+    private $userIdType;
+    
+    public function setUserIdType($userIdType){
+        $this->params['userIdType'] = $userIdType;
+    }
+
+    public function getUserIdType(){
+        return $this->userIdType;
+    }
+            
+    private $userId;
+    
+    public function setUserId($userId){
+        $this->params['userId'] = $userId;
+    }
+
+    public function getUserId(){
+        return $this->userId;
+    }
+            
+    private $channelId;
+    
+    public function setChannelId($channelId){
+        $this->params['channelId'] = $channelId;
+    }
+
+    public function getChannelId(){
+        return $this->channelId;
+    }
+            
+    private $ip;
+    
+    public function setIp($ip){
+        $this->params['ip'] = $ip;
+    }
+
+    public function getIp(){
+        return $this->ip;
+    }
+            
+    private $provinceId;
+    
+    public function setProvinceId($provinceId){
+        $this->params['provinceId'] = $provinceId;
+    }
+
+    public function getProvinceId(){
+        return $this->provinceId;
+    }
+            
+    private $cityId;
+    
+    public function setCityId($cityId){
+        $this->params['cityId'] = $cityId;
+    }
+
+    public function getCityId(){
+        return $this->cityId;
+    }
+            
+    private $countryId;
+    
+    public function setCountryId($countryId){
+        $this->params['countryId'] = $countryId;
+    }
+
+    public function getCountryId(){
+        return $this->countryId;
+    }
+            
+    private $townId;
+    
+    public function setTownId($townId){
+        $this->params['townId'] = $townId;
+    }
+
+    public function getTownId(){
+        return $this->townId;
+    }
+            
+    private $itemIds;
+    
+    public function setItemIds($itemIds){
+        $this->params['itemIds'] = $itemIds;
+    }
+
+    public function getItemIds(){
+        return $this->itemIds;
+    }
+            
+    private $sceneId;
+    
+    public function setSceneId($sceneId){
+        $this->params['sceneId'] = $sceneId;
+    }
+
+    public function getSceneId(){
+        return $this->sceneId;
+    }
+            
+    private $pin;
+    
+    public function setPin($pin){
+        $this->params['pin'] = $pin;
+    }
+
+    public function getPin(){
+        return $this->pin;
+    }
+            
+    private $searchPosition;
+    
+    public function setSearchPosition($searchPosition){
+        $this->params['searchPosition'] = $searchPosition;
+    }
+
+    public function getSearchPosition(){
+        return $this->searchPosition;
+    }
     
     function getInstance(){
         return $this->params;

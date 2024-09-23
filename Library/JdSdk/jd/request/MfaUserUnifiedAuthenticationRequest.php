@@ -13,7 +13,7 @@ class MfaUserUnifiedAuthenticationRequest
 	    if(empty($this->apiParas)){
             return "{}";
         }
-        return json_encode($this->apiParas);
+        return $this->apiParas;
 	}
 	
 	public function check(){
@@ -219,6 +219,28 @@ class MfaUserUnifiedAuthenticationRequest
 
 	public function getMobile(){
 	  return $this->mobile;
+	}
+
+                        	                   			private $openIdBuyer;
+    	                                                                        
+	public function setOpenIdBuyer($openIdBuyer){
+		$this->openIdBuyer = $openIdBuyer;
+         $this->apiParas["open_id_buyer"] = $openIdBuyer;
+	}
+
+	public function getOpenIdBuyer(){
+	  return $this->openIdBuyer;
+	}
+
+                        	                   			private $xidBuyer;
+    	                                                            
+	public function setXidBuyer($xidBuyer){
+		$this->xidBuyer = $xidBuyer;
+         $this->apiParas["xid_buyer"] = $xidBuyer;
+	}
+
+	public function getXidBuyer(){
+	  return $this->xidBuyer;
 	}
 
                             }

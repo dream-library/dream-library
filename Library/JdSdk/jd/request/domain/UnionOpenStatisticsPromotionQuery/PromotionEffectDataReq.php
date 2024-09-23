@@ -57,6 +57,16 @@ class PromotionEffectDataReq{
     public function getFields(){
         return $this->fields;
     }
+            
+    private $itemId;
+    
+    public function setItemId($itemId){
+        $this->params['itemId'] = $itemId;
+    }
+
+    public function getItemId(){
+        return $this->itemId;
+    }
     
     function getInstance(){
         return $this->params;

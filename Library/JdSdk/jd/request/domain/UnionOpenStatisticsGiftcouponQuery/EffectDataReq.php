@@ -77,6 +77,16 @@ class EffectDataReq{
     public function getPin(){
         return $this->pin;
     }
+            
+    private $itemId;
+    
+    public function setItemId($itemId){
+        $this->params['itemId'] = $itemId;
+    }
+
+    public function getItemId(){
+        return $this->itemId;
+    }
     
     function getInstance(){
         return $this->params;

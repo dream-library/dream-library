@@ -27,6 +27,36 @@ class GoodsReq{
     public function getFields(){
         return $this->fields;
     }
+            
+    private $itemIds;
+    
+    public function setItemIds($itemIds){
+        $this->params['itemIds'] = $itemIds;
+    }
+
+    public function getItemIds(){
+        return $this->itemIds;
+    }
+            
+    private $sceneId;
+    
+    public function setSceneId($sceneId){
+        $this->params['sceneId'] = $sceneId;
+    }
+
+    public function getSceneId(){
+        return $this->sceneId;
+    }
+            
+    private $pin;
+    
+    public function setPin($pin){
+        $this->params['pin'] = $pin;
+    }
+
+    public function getPin(){
+        return $this->pin;
+    }
     
     function getInstance(){
         return $this->params;

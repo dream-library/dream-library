@@ -37,6 +37,16 @@ class ChannelRelationGetReq{
     public function getNote(){
         return $this->note;
     }
+            
+    private $channelNote;
+    
+    public function setChannelNote($channelNote){
+        $this->params['channelNote'] = $channelNote;
+    }
+
+    public function getChannelNote(){
+        return $this->channelNote;
+    }
     
     function getInstance(){
         return $this->params;

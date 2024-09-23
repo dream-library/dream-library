@@ -107,6 +107,36 @@ class PromotionCodeReq{
     public function getWeChatType(){
         return $this->weChatType;
     }
+            
+    private $rid;
+    
+    public function setRid($rid){
+        $this->params['rid'] = $rid;
+    }
+
+    public function getRid(){
+        return $this->rid;
+    }
+            
+    private $sceneId;
+    
+    public function setSceneId($sceneId){
+        $this->params['sceneId'] = $sceneId;
+    }
+
+    public function getSceneId(){
+        return $this->sceneId;
+    }
+            
+    private $proType;
+    
+    public function setProType($proType){
+        $this->params['proType'] = $proType;
+    }
+
+    public function getProType(){
+        return $this->proType;
+    }
     
     function getInstance(){
         return $this->params;

@@ -17,6 +17,16 @@ class Req{
     public function getActivityId(){
         return $this->activityId;
     }
+            
+    private $channelId;
+    
+    public function setChannelId($channelId){
+        $this->params['channelId'] = $channelId;
+    }
+
+    public function getChannelId(){
+        return $this->channelId;
+    }
     
     function getInstance(){
         return $this->params;

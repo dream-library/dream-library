@@ -14,17 +14,17 @@ class ProductSkuQueryRequest
 	}
 	
 	public function getApiParas(){
-        if(empty($this->apiParas)){
-	        return "{}";
-	    }
-		return json_encode($this->apiParas);
+	    if(empty($this->apiParas)){
+            return "{}";
+        }
+        return $this->apiParas;
 	}
 	
 	public function check(){
 		
 	}
 	
-    public function putOtherTextParam($key, $value){
+	public function putOtherTextParam($key, $value){
 		$this->apiParas[$key] = $value;
 		$this->$key = $value;
 	}
@@ -38,14 +38,23 @@ class ProductSkuQueryRequest
     public function getVersion(){
         return $this->version;
     }
-    private  $pageNum;
+                                    	                   			private $pageNum;
+    	                        
+	public function setPageNum($pageNum){
+		$this->pageNum = $pageNum;
+         $this->apiParas["pageNum"] = $pageNum;
+	}
 
-    public function setPageNum($pageNum){
-        $this->apiParas['pageNum'] = $pageNum;
-    }
-    public function getPageNum(){
-        return $this->apiParas['pageNum'];
-    }
-}
+	public function getPageNum(){
+	  return $this->pageNum;
+	}
 
-?>
+                        	                        	                        	                        	                        	}
+
+
+
+
+
+        
+ 
+

@@ -37,6 +37,16 @@ class GoodsReq{
     public function getPid(){
         return $this->pid;
     }
+            
+    private $sceneId;
+    
+    public function setSceneId($sceneId){
+        $this->params['sceneId'] = $sceneId;
+    }
+
+    public function getSceneId(){
+        return $this->sceneId;
+    }
     
     function getInstance(){
         return $this->params;

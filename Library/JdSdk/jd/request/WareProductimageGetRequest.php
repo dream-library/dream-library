@@ -13,7 +13,7 @@ class WareProductimageGetRequest
         if(empty($this->apiParas)){
 	        return "{}";
 	    }
-		return json_encode($this->apiParas);
+		return $this->apiParas;
 	}
 	
 	public function check(){

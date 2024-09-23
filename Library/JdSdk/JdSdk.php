@@ -28,35 +28,29 @@ if (!defined("JD_SDK_DEV_MODE"))
 /**
  * 定义常量结束
  */
-if (!defined("JD_AUTOLOADER_PATH"))
-{
-    define("JD_AUTOLOADER_PATH", dirname(__FILE__));
-}
-
-require("Jdloader.php");
 
 /**
  * 找到lotusphp入口文件，并初始化lotusphp
  * lotusphp是一个第三方php框架，其主页在：lotusphp.googlecode.com
  */
-//$lotusHome = dirname(__FILE__) . DIRECTORY_SEPARATOR . "lotusphp_runtime" . DIRECTORY_SEPARATOR;
-//include($lotusHome . "Lotus.php");
-//$lotus = new Lotus;
-//$lotus->option["autoload_dir"] = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'jd';
-//$lotus->devMode = JD_SDK_DEV_MODE;
-//$lotus->defaultStoreDir = JD_SDK_WORK_DIR;
-//$lotus->init();
+$lotusHome = dirname(__FILE__) . DIRECTORY_SEPARATOR . "lotusphp_runtime" . DIRECTORY_SEPARATOR;
+include($lotusHome . "Lotus.php");
+$lotus = new Lotus;
+$lotus->option["autoload_dir"] = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'jd';
+$lotus->devMode = JD_SDK_DEV_MODE;
+$lotus->defaultStoreDir = JD_SDK_WORK_DIR;
+$lotus->init();
 
 //测试demo
-//$c = new JdClient();
-//$c->appKey = "26EAC2509056EB38FB623D9A49296D2C";
-//$c->appSecret = "1abdc5a97ecb4594ab7b772296bcfbbd";
-//$c->accessToken = "1f1d3048-220a-484d-ad93-f3808d9aacc1";
-//$c->serverUrl = "http://gw.api.360buy.net/routerjson";
-//$req = new JingdongSetListMapRequest;
-//$req->putOtherTextParam("cid", "1");
-//$req->putOtherTextParam("value_id", "1");
-//$req->putOtherTextParam("source", "1");
-//$req->putOtherTextParam("ip", "1");
-//$resp = $c->execute($req, $c->accessToken);
-//print(json_encode($resp));
+$c = new JdClient();
+$c->appKey = "26EAC2509056EB38FB623D9A49296D2C";
+$c->appSecret = "1abdc5a97ecb4594ab7b772296bcfbbd";
+$c->accessToken = "1f1d3048-220a-484d-ad93-f3808d9aacc1";
+$c->serverUrl = "http://gw.api.360buy.net/routerjson";
+$req = new JingdongSetListMapRequest;
+$req->putOtherTextParam("cid", "1");
+$req->putOtherTextParam("value_id", "1");
+$req->putOtherTextParam("source", "1");
+$req->putOtherTextParam("ip", "1");
+$resp = $c->execute($req, $c->accessToken);
+print(json_encode($resp));

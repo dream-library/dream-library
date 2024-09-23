@@ -2,6 +2,10 @@
 class NewWareBaseproductGetRequest
 {
 
+    public function __construct()
+    {
+         $this->version = "1.0";
+    }
 
 	private $apiParas = array();
 	
@@ -10,17 +14,17 @@ class NewWareBaseproductGetRequest
 	}
 	
 	public function getApiParas(){
-	    if(empty($this->apiParas)){
-            return "{}";
-        }
-        return json_encode($this->apiParas);
+        if(empty($this->apiParas)){
+	        return "{}";
+	    }
+		return $this->apiParas;
 	}
 	
 	public function check(){
 		
 	}
 	
-	public function putOtherTextParam($key, $value){
+    public function putOtherTextParam($key, $value){
 		$this->apiParas[$key] = $value;
 		$this->$key = $value;
 	}
@@ -34,30 +38,22 @@ class NewWareBaseproductGetRequest
     public function getVersion(){
         return $this->version;
     }
-                                                             	                        	                                                                                                                                                                                                                                                                                                               private $ids;
-                              public function setIds($ids ){
-                 $this->ids=$ids;
-                 $this->apiParas["ids"] = $ids;
-              }
+    private  $skuIdSet;
 
-              public function getIds(){
-              	return $this->ids;
-              }
-                                                                                                                                                                 	                        	                                                                                                                                                                                                                                                                                                               private $basefields;
-                              public function setBasefields($basefields ){
-                 $this->basefields=$basefields;
-                 $this->apiParas["basefields"] = $basefields;
-              }
+    public function setSkuIdSet($skuIdSet){
+        $this->apiParas['skuIdSet'] = $skuIdSet;
+    }
+    public function getSkuIdSet(){
+        return $this->apiParas['skuIdSet'];
+    }
+    private  $baseset;
 
-              public function getBasefields(){
-              	return $this->basefields;
-              }
-                                                                                                                }
+    public function setBaseset($baseset){
+        $this->apiParas['baseset'] = $baseset;
+    }
+    public function getBaseset(){
+        return $this->apiParas['baseset'];
+    }
+}
 
-
-
-
-
-        
- 
-
+?>

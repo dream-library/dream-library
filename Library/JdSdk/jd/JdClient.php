@@ -27,20 +27,22 @@ class JdClient
 		$stringToBeSigned = $this->appSecret;
 		foreach ($params as $k => $v)
 		{
-			if("@" != substr($v, 0, 1))
-			{
-				$stringToBeSigned .= "$k$v";
-			}
+//            if(!is_string($v) && is_array($v)){
+            if($this->json_param_key == $k){
+                $stringToBeSigned .= "$k".json_encode($v, JSON_UNESCAPED_SLASHES);
+            }else{
+                $stringToBeSigned .= "$k$v";
+            }
+
 		}
 		unset($k, $v);
 		$stringToBeSigned .= $this->appSecret;
 		return strtoupper(md5($stringToBeSigned));
 	}
 
-	public function curl($url, $postFields = null)
+	public function curl($serverUrl, $sysParams)
 	{
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_FAILONERROR, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		if ($this->readTimeout) {
@@ -49,40 +51,35 @@ class JdClient
 		if ($this->connectTimeout) {
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout);
 		}
-		//https ����
-		if(strlen($url) > 5 && strtolower(substr($url,0,5)) == "https" ) {
+		//https 请求
+		if(strlen($serverUrl) > 5 && strtolower(substr($serverUrl,0,5)) == "https" ) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 		}
 
-		if (is_array($postFields) && 0 < count($postFields))
-		{
-			$postBodyString = "";
-			$postMultipart = false;
-			foreach ($postFields as $k => $v)
-			{
-				if("@" != substr($v, 0, 1))//�ж��ǲ����ļ��ϴ�
-				{
-					$postBodyString .= "$k=" . urlencode($v) . "&"; 
-				}
-				else//�ļ��ϴ���multipart/form-data��������www-form-urlencoded
-				{
-					$postMultipart = true;
-				}
-			}
-			unset($k, $v);
-			curl_setopt($ch, CURLOPT_POST, true);
-			if ($postMultipart)
-			{
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-			}
-			else
-			{
-				curl_setopt($ch, CURLOPT_POSTFIELDS, substr($postBodyString,0,-1));
-			}
-		}
+        // 此处修改暂时为了保证顺利上传，直接base64编码文件流的方式来上传。所以$postMultipart 依然为false
+        //获取业务参数
+        $apiParams = $sysParams[$this->json_param_key];
+
+        /* 1)全部使用POST方式，multi和simple。
+        2)$postMultipart 暂时没有用，字节流拼接成串的方式上传，所以先去掉
+        */
+        curl_setopt($ch, CURLOPT_POST, true);
+
+        // 需要把系统参数依然使用url方式传递
+        $requestUrl = $serverUrl . "?";
+        foreach ($sysParams as $sysParamKey => $sysParamValue)
+        {
+            if($sysParamKey != $this->json_param_key){
+                $requestUrl .= "$sysParamKey=" . urlencode($sysParamValue) . "&";
+            }
+        }
+
+        // 去掉末尾的 "&"
+        curl_setopt($ch, CURLOPT_URL, substr($requestUrl,0,-1));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->json_param_key . "=" . urlencode(json_encode($apiParams,JSON_UNESCAPED_SLASHES)));
+
 		$reponse = curl_exec($ch);
-		
 		if (curl_errno($ch))
 		{
 			throw new Exception(curl_error($ch),0);
@@ -99,9 +96,12 @@ class JdClient
 		return $reponse;
 	}
 
+	/*
+        2024.08 修改了一版，系统参数和业务参数分别使用，其中业务参数放到postbody里面
+    */
 	public function execute($request, $access_token = null)
 	{
-		//��װϵͳ����
+		//组装系统参数
         $sysParams["app_key"] = $this->appKey;
         $version = $request->getVersion();
 
@@ -112,32 +112,25 @@ class JdClient
         {
            $sysParams["access_token"] = $access_token;
         }
-
-		//��ȡҵ�����
-		$apiParams = $request->getApiParas();
-		$sysParams[$this->json_param_key] = $apiParams;
-
-		//ǩ��
+		$sysParams[$this->json_param_key] = $request->getApiParas();
+		//签名
 		$sysParams["sign"] = $this->generateSign($sysParams);
-		//ϵͳ��������GET����
-		$requestUrl = $this->serverUrl . "?";
-		foreach ($sysParams as $sysParamKey => $sysParamValue)
-		{
-			$requestUrl .= "$sysParamKey=" . urlencode($sysParamValue) . "&";
-		}
-		//����HTTP����
+
+		//发起HTTP请求
 		try
 		{
-			$resp = $this->curl($requestUrl, $apiParams);
-		}
-		catch (Exception $e)
-		{
-			$result->code = $e->getCode();
-			$result->msg = $e->getMessage();
-			return $result;
+			$resp = $this->curl($this->serverUrl, $sysParams);
 		}
 
-		//����JD���ؽ��
+		catch (Exception $e)
+		{
+            return array(
+              'code' => $e->getCode(),
+              'msg' => $e->getMessage()
+            );
+		}
+
+		//解析JD返回结果
 		$respWellFormed = false;
 		if ("json" == $this->format)
 		{
@@ -160,12 +153,13 @@ class JdClient
 			}
 		}
 
-		//���ص�HTTP�ı����Ǳ�׼JSON����XML�����´�����־
+		//返回的HTTP文本不是标准JSON或者XML，记下错误日志
 		if (false === $respWellFormed)
 		{
-			$result->code = 0;
-			$result->msg = "HTTP_RESPONSE_NOT_WELL_FORMED";
-			return $result;
+            return array(
+                'code' => 0,
+                'msg' => "HTTP_RESPONSE_NOT_WELL_FORMED"
+            );
 		}
 
 		return $respObject;
